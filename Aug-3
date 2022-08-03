@@ -1,0 +1,34 @@
+void inorder(Node * &node, Node*& s )
+    {
+        if(s->data < node->data)
+        {
+            if(!node->left)
+            {
+                node->left = s;
+                return;
+            }
+            else  inorder(node->left,s);
+        }
+        else
+        {
+            if(!node->right)
+            {
+                node->right = s;
+                return;
+            }
+            else  inorder(node->right,s);
+        }
+        return;
+    }
+    
+    Node* post_order(int pre[], int size)
+    {
+        Node* root = newNode(pre[0]);
+        Node* temp = root;
+        for(int i = 1;i<size;i++)
+        {
+            Node* tmp = newNode(pre[i]);       
+            inorder(temp, tmp);
+        }
+        return root;
+    }
