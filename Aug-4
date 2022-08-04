@@ -1,0 +1,32 @@
+class Solution{
+public:    
+   bool isCompleteBT(Node* root){
+       //code here
+       queue <Node*> q;
+       q.push(root);
+       int ended = 0;
+       while(!q.empty()){
+           Node * t = q.front();
+           q.pop();
+           if (ended == 1 && (t->right or t->left)){
+               return 0;
+           }
+           if (t->right){
+               if(!t->left){
+                   return 0;
+               }
+               else{ q.push(t->left);}
+               q.push(t->right);
+           }
+           
+           else if (t->left){ 
+               if (t->left->left){
+                   return 0;
+               }
+               q.push(t->left);
+               ended =1;
+           }
+       }
+       return 1;
+   }
+};
