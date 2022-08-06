@@ -1,0 +1,21 @@
+class Solution{
+public:
+    Node* partition(Node *l, Node *h){
+        //Your code goes here
+        if(!l || !h) return nullptr;
+        
+        Node* pivot = h;
+        
+        Node* ptr = l;
+        for(Node* curr = l; curr != h; curr = curr->next) {
+            if(curr->data <= pivot->data) { 
+                swap(curr->data, ptr->data);
+                ptr = ptr->next;
+            }
+        }
+        
+        swap(ptr->data, pivot->data);
+        return ptr;
+    
+    }
+};
